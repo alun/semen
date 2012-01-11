@@ -28,7 +28,7 @@ package semen{
 
 		private function startNew():void {
 			addChild(new Background());
-			addChild(new AlphaLayer()).alpha = .1;
+			addChild(new AlphaLayer()).alpha = Config.placeHoldersAlpha;
 			new RootController(GameField(addChild(new GameField())));
 		}
 	}

@@ -29,7 +29,7 @@ package semen.mvc.c {
 		
 		public function addPoint():void {
 			_model.addPoint();
-			if (Config.flushFailsScores.indexOf(_model.scores) > -1) {
+ 			if (Config.flushFailsScores.indexOf(String(_model.scores)) > -1) {
 				_model.flushFails();
 			}
 			if (_model.scores % Config.pointsToSpeedUp == 0) {
