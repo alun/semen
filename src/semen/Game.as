@@ -14,6 +14,7 @@ package semen{
 	
 	public class Game extends Background {
 		private var counter:Number = 0;
+		private var _defaultConfigPath:String ="./config.xml";
 		
 		public function Game():void {
 			if (stage) init();
@@ -22,6 +23,10 @@ package semen{
 		
 		private function init(e:Event = null):void {
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			Config.loadConfig(_defaultConfigPath, startNew);
+		}
+
+		private function startNew():void {
 			addChild(new Background());
 			new RootController(GameField(addChild(new GameField())));
 		}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+ <config>
+	<velocity>500</velocity> <!-- Скорость перемещения семечек, мс --> 
+	<appearNew>1000</appearNew> <!-- Интервал появления новой семечки, мс --> 
+	<wifeAppearInterval>50</wifeAppearInterval> <!-- Интервал появления жены, мс --> 
+	<flushLifesEvery>200;500</flushLifesEvery> <!-- Чему должны быть кратны очки, чтобы обновились жизни, очки --> 
+	<lifes>4</lifes> <!-- Количество жизней, штуки --> 
+	<pointsToSpeedUp>10</pointsToSpeedUp> <!-- Чему должны быть кратны очки, чтобы игра ускорилась, очки --> 
+	<velocityMultiplier>50</velocityMultiplier> <!-- Насколько увеличивается скорость семечек, проценты --> 
+	<appearNewMultiplier>50</appearNewMultiplier> <!-- Насколько уменьшается интервал появления новых семечек, проценты --> 
+ </config>
+</data>
