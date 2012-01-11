@@ -18,6 +18,7 @@ package semen.mvc.v {
 			var model:ChickModel = ChickModel(e.currentTarget);
 			for (var i:int = 0; i < 4; i++) {
 				_movie['egg_' + i].visible = model.places[i];
+				_movie['fall_' + i].visible = model.fall[i];
 			}
 		}
 		

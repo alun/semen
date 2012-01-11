@@ -28,14 +28,27 @@ package semen.mvc.c {
 		
 		public function moveEggs(e:TimerEvent):void {
 			var places:Array = _model.places;
+			var fall:Array = _model.fall;
+			for (var i:int = fall.length - 1; i > 0; i--) {
+				fall[i] = fall[i - 1];
+			} 
+			fall[0] = false;
 			if (places[places.length - 1]) {
 				dispatchEvent(new EggEvent(EggEvent.EGG_FALL));
 			}
-			for (var i:int = places.length - 1; i > 0; i--) {
+			for (i = places.length - 1; i > 0; i--) {
 				places[i] = places[i - 1];
 			} 
 			places[0] = false;
+			_model.fall = fall;
 			_model.places = places;
+		}
+		
+		public function fall():void {
+			var fall:Array = _model.fall; 
+			fall[0] = true;
+			_model.fall = fall;
+			_model.places = _model.places;
 		}
 		
 		public function addEgg():Boolean {
@@ -65,6 +78,5 @@ package semen.mvc.c {
 		public function speedUp():void {
 			_timer.delay /= 1 + Config.eggsVelocityMultiplier;
 		}
-		
 	}
 }

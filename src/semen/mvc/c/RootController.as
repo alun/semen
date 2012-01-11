@@ -123,6 +123,7 @@ package semen.mvc.c {
 			if (ChickController(e.currentTarget) == chickControllers[prefix]) {
 				winPoint();
 			} else {
+				ChickController(e.currentTarget).fall();
 				losePoint();
 			}
 		}

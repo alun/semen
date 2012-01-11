@@ -11,6 +11,7 @@ package semen.mvc.m{
 	 */
 	public class ChickModel extends EventDispatcher {
 	private var _places:Array = [ false, false, false, false ];
+	private var _fall:Array = [ false, false, false, false ];
 	private var counter:Number = 0;
 		
 		public function ChickModel() {
@@ -24,6 +25,14 @@ package semen.mvc.m{
 		public function set places(value:Array):void {
 			_places = value;
 			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
+		}
+		
+		public function get fall():Array {
+			return _fall;
+		}
+		
+		public function set fall(value:Array):void {
+			_fall = value;
 		}
 		
 
