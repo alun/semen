@@ -19,7 +19,9 @@ package semen.mvc.v {
 			65 : 'ul',
 			90 : 'dl',
 			75 : 'ur',
-			77 : 'dr'
+			77 : 'dr',
+			78 : 'ng',
+			80 : 'pp'
 		}
 		
 		public function ButtonsView(buttonsViews:Object, model:ButtonsModel) {

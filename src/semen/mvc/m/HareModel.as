@@ -23,6 +23,11 @@ package semen.mvc.m {
 			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
+		public function flushAll():void {
+			_isVisible = false;
+			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
+		}
+		
 		
 		
 	}

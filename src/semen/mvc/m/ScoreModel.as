@@ -40,9 +40,10 @@ package semen.mvc.m {
 			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
-		public function nullAll():void {
+		public function flushAll():void {
 			_scores = 0;
 			_fails = 0;
+			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 	}
 }

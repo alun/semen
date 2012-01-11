@@ -25,6 +25,17 @@ package semen.mvc.m{
 			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
+		public function flushAll():void {
+			_positions= {
+				'ul': false, 
+				'dl': false, 
+				'ur': false, 
+				'dr': true
+			}
+			_current = 'dr';
+			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
+		}
+		
 		public function get positions():Object {
 			return _positions;
 		}

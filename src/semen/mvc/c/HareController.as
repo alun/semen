@@ -1,10 +1,12 @@
 package semen.mvc.c {
+	import flash.events.Event;
 	import semen.staff.Config;
 	import flash.display.DisplayObject;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import semen.mvc.m.HareModel;
 	import semen.mvc.v.HareView;
+	import semen.staff.GlobalDispatcher;
 	import semen.staff.RenderEvent;
 	/**
 	 * ...
@@ -20,6 +22,16 @@ package semen.mvc.c {
 			_view = new HareView(movie, _model);
 			_timer = new Timer(Config.hareAppearingInterval);
 			_timer.addEventListener(TimerEvent.TIMER, changeHarePresent);
+			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, pauseAll);
+			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.UNPAUSE, unpauseAll);
+		}
+		
+		private function pauseAll(e:Event):void {
+			_timer.stop();
+		}
+		
+		private function unpauseAll(e:Event):void {
+			_timer.start();
 		}
 		
 		private function changeHarePresent(e:TimerEvent):void {
@@ -38,10 +50,10 @@ package semen.mvc.c {
 			_timer.start();
 		}
 		
-		public function stopAll():void {
+		public function flushAll():void {
+			_model.flushAll();
 			_timer.stop();
 			_timer.reset();
-			if (_model.isVisible) _model.reverseVisible();
 		}
 		
 	}

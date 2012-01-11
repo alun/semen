@@ -19,8 +19,8 @@ package semen.mvc.c {
 			_model.dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
-		public function stopAll():void {
-			
+		public function flushAll():void {
+			_model.flushAll();
 		}
 		
 		public function set position(value:String):void {

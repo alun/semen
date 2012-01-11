@@ -41,8 +41,8 @@ package semen.mvc.c {
 			_model.dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
-		public function stopAll():void {
-			_model.nullAll();
+		public function flushAll():void {
+			_model.flushAll();
 		}
 		
 	}

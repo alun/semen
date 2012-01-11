@@ -1,4 +1,5 @@
 package semen.mvc.c {
+	import flash.events.Event;
 	import semen.staff.ButtonEvent;
 	import semen.staff.Config;
 	import semen.staff.EggEvent;
@@ -6,6 +7,7 @@ package semen.mvc.c {
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	import semen.staff.GlobalDispatcher;
 	/**
 	 * ...
 	 * @author Mickodin Ilja mka BuKT
@@ -25,7 +27,6 @@ package semen.mvc.c {
 			_gameField = gameField;
 			initControllers();
 			initNewEggsTimer();
-			startGame();
 		}
 		
 		/******************************************************************************************************/
@@ -43,6 +44,7 @@ package semen.mvc.c {
 		}
 		
 		 private function initChicksControllers():void {
+			chicksArray = new Array();
 			for each(var prefix:String in sides) {
 				var chickView:MovieClip = MovieClip(_gameField[prefix + "Chick"]);
 				if (chickView) {
@@ -70,11 +72,14 @@ package semen.mvc.c {
 				var button:MovieClip = MovieClip(_gameField[prefix + "Button"]);
 				buttons[prefix] = button;
 			}
+			buttons['pp'] = MovieClip(_gameField["ppButton"]);
+			buttons['ng'] = MovieClip(_gameField["ngButton"]);
 			buttonsController = new ButtonsController(buttons, wolfController);
+			buttonsController.addEventListener(ButtonEvent.NEW_GAME, newGameListener);
 		}
 		
 		private function initHareController():void {
-			hareController = new HareController(_gameField.hare)
+			hareController = new HareController(_gameField.hare);
 		}
 		
 		private function initScoreController():void {
@@ -90,6 +95,22 @@ package semen.mvc.c {
 		private function initNewEggsTimer():void {
 			_newEggsTimer = new Timer(Config.newEggsFrequency, 0);
 			_newEggsTimer.addEventListener(TimerEvent.TIMER, addEgg);
+			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, pauseTimer);
+			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.UNPAUSE, unPauseTimer);
+		}
+		
+		/******************************************************************************************************/
+		
+		/**
+		 * Pause listeners
+		 */
+		
+		private function unPauseTimer(e:Event):void {
+			_newEggsTimer.start();
+		}
+		
+		private function pauseTimer(e:Event):void {
+			_newEggsTimer.stop();
 		}
 		
 		/******************************************************************************************************/
@@ -98,16 +119,31 @@ package semen.mvc.c {
 		 * Last preparations and start-game block
 		 * */
 		
+		private function flushAll():void {
+			for each (var cc:ChickController in chickControllers ) {
+				cc.flushAll();
+			} 
+			buttonsController.flushAll();
+			wolfController.flushAll();
+			scoreController.flushAll();
+			hareController.flushAll();
+			
+			buttonsController.removeEventListener(ButtonEvent.PAUSE, changePauseMode);
+			_newEggsTimer.stop();
+			_newEggsTimer.reset();
+			_newEggsTimer.delay = Config.newEggsFrequency;
+		}
+		
 		private function startGame():void {
 			for each (var cc:ChickController in chickControllers ) {
 				cc.getReady();
 				cc.start();
 			} 
-			buttonsController.getReady();
-			wolfController.getReady();
-			scoreController.getReady();
-			hareController.getReady();
 			// Start itself
+			if (GlobalDispatcher.instance.isPaused) {
+				GlobalDispatcher.instance.changePauseMode();
+			}
+			buttonsController.addEventListener(ButtonEvent.PAUSE, changePauseMode);
 			hareController.start();
 			_newEggsTimer.start();
 		}
@@ -149,6 +185,8 @@ package semen.mvc.c {
 					return; //Stack overflow trap
 				}
 				addEgg(e, tries + 1);
+			} else {
+				return;
 			}
 		}
 		 
@@ -158,9 +196,7 @@ package semen.mvc.c {
 		  * Ingame event: user is too lucky. Time to complicate gameplay
 		  */
 		private function speedUp(e:GameEvent):void {
-			for each (var cc:ChickController in chickControllers ) {
-				cc.speedUp();
-			} 
+			ChickController.speedUp();
 			_newEggsTimer.delay /= 1 + Config.newEggsMultiplier;
 		}
 		
@@ -172,17 +208,17 @@ package semen.mvc.c {
 		  
 		private function gameOver(e:GameEvent):void {
 			checkResults();
-			stopAll();
+			flushAll();
 		}
 		
 		private function stopAll():void {
-			for each (var cc:ChickController in chickControllers ) {
-				cc.stopAll();
-			} 
-			buttonsController.stopAll();
-			wolfController.stopAll();
-			scoreController.stopAll();
-			hareController.stopAll();
+			//for each (var cc:ChickController in chickControllers ) {
+				//cc.stopAll();
+			//} 
+			//buttonsController.stopAll();
+			//wolfController.stopAll();
+			//scoreController.stopAll();
+			//hareController.stopAll();
 			_newEggsTimer.stop();
 			_newEggsTimer.reset();
 			_newEggsTimer.delay = Config.newEggsFrequency;
@@ -191,6 +227,23 @@ package semen.mvc.c {
 		private function checkResults():void {
 			//TODO: Тут будет запрос на сервер
 		}
+		
+		/******************************************************************************************************/
+		/**
+		  * User event: User wants new game.
+		  */
+		private function newGameListener(e:ButtonEvent):void {
+			flushAll();
+			startGame();
+		}
+		/******************************************************************************************************/
+		/**
+		  * User event: User wants pause game.
+		  */
+		private function changePauseMode(e:ButtonEvent):void {
+			GlobalDispatcher.instance.changePauseMode();
+		}
+		
 		
 		/******************************************************************************************************/
 	}

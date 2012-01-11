@@ -9,6 +9,7 @@ package semen.mvc.c {
 	import flash.geom.Point;
 	import semen.mvc.m.ButtonsModel;
 	import semen.mvc.v.ButtonsView;
+	import semen.staff.GlobalDispatcher;
 	import semen.staff.RenderEvent;
 	/**
 	 * ...
@@ -32,8 +33,8 @@ package semen.mvc.c {
 			_model.dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
-		public function stopAll():void {
-			
+		public function flushAll():void {
+			_model.flushAll();
 		}
 		
 		private function buttonDeactivateListener(e:ButtonEvent):void {
@@ -41,13 +42,17 @@ package semen.mvc.c {
 		}
 		
 		private function buttonClickedListener(e:ButtonEvent):void {
-			_model.down(e.side);
-			_controlledObject.position = e.side;
+			if (e.side == 'ng') {
+				dispatchEvent(new ButtonEvent(ButtonEvent.NEW_GAME));
+				return;
+			} else if (e.side == 'pp') {
+				dispatchEvent(new ButtonEvent(ButtonEvent.PAUSE));
+				return;
+			}
+			if (!GlobalDispatcher.instance.isPaused) {
+				_model.down(e.side);
+				_controlledObject.position = e.side;
+			}
 		}
-		
-		private function initListeners(e:Event = null):void {
-			//addEventListener(MouseEvent.MOUSE_DOWN, down);
-			//stage.addEventListener(MouseEvent.MOUSE_UP, up);
-		}
-	}
+	}		
 }

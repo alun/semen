@@ -11,7 +11,9 @@ package semen.mvc.m {
 			'ul': 'stable',
 			'dl': 'stable',
 			'ur': 'stable',
-			'dr': 'stable'
+			'dr': 'stable',
+			'ng': 'stable',
+			'pp': 'stable'
 		}
 		private var _last:String = '';
 		public function ButtonsModel() {
@@ -27,6 +29,14 @@ package semen.mvc.m {
 		public function up(side:String):void {
 			side = side ? side : _last;
 			_states[side] = 'stable';
+			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
+		}
+		
+		public function flushAll():void {
+			for each (var state:String in _states) {
+				state = 'stable';
+			}
+			_last = '';
 			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		

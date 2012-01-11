@@ -35,7 +35,11 @@ package semen.mvc.m{
 			_fall = value;
 		}
 		
-
+		public function flushModel():void {
+			_places = [ false, false, false, false ];
+			_fall = [ false, false, false, false ];
+			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
+		}
 		
 	}
 
