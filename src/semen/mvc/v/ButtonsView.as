@@ -1,4 +1,6 @@
 package semen.mvc.v {
+	import flash.ui.Mouse;
+	import flash.ui.MouseCursor;
 	import semen.staff.ButtonEvent;
 	import flash.display.MovieClip;
 	import flash.display.Stage;
@@ -44,10 +46,27 @@ package semen.mvc.v {
 			for (side in _movies) {
 				_movies[side].side = side;
 				_movies[side].addEventListener(MouseEvent.MOUSE_DOWN, clickListener);
+				_movies[side].addEventListener(MouseEvent.MOUSE_OVER, overListener);
+				_movies[side].addEventListener(MouseEvent.MOUSE_OUT, outListener);
+				_movies[side].mouseChildren = false;
 				_movies[side].stop();
 			}
 			_movies[side].stage.addEventListener(KeyboardEvent.KEY_DOWN, keyListener);
 			_movies[side].stage.addEventListener(KeyboardEvent.KEY_UP, keyListener);
+		}
+		
+		private function overListener(e:MouseEvent):void {
+			var button:MovieClip = MovieClip(e.currentTarget);
+			button.gotoAndStop('over');
+			Mouse.cursor = MouseCursor.BUTTON;
+			button.addEventListener(MouseEvent.MOUSE_OUT, outListener);
+		}
+		
+		private function outListener(e:MouseEvent):void {
+			var button:MovieClip = MovieClip(e.currentTarget);
+			button.removeEventListener(e.type, outListener);
+			button.gotoAndStop('stable');
+			Mouse.cursor = MouseCursor.AUTO;
 		}
 		
 		private function keyListener(e:KeyboardEvent):void {

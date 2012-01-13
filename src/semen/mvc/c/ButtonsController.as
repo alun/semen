@@ -27,6 +27,7 @@ package semen.mvc.c {
 			_view = new ButtonsView(buttonsViews, _model);
 			_view.addEventListener(ButtonEvent.CLICKED, buttonClickedListener);
 			_view.addEventListener(ButtonEvent.DEACTIVATED, buttonDeactivateListener);
+			flushAll();
 		}
 		
 		public function getReady():void {

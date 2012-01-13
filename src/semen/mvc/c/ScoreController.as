@@ -18,6 +18,7 @@ package semen.mvc.c {
 		public function ScoreController(scores:Scores, lifes:MovieClip) {
 			_model = new ScoreModel();
 			_view = new ScoreView(scores, lifes, _model);
+			flushAll();
 		}
 		
 		public function removeLife(_isHare:Boolean):void {

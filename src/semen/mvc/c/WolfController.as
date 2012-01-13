@@ -13,6 +13,7 @@ package semen.mvc.c {
 		public function WolfController(views:Object) {
 			_model = new WolfModel();
 			_view = new WolfView(views, _model);
+			flushAll();
 		}
 		
 		public function getReady():void {

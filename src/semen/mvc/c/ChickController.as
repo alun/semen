@@ -27,6 +27,7 @@ package semen.mvc.c {
 				_timer = new Timer(Config.eggsVelocity, 0);
 			}
 			_timer.addEventListener(TimerEvent.TIMER, moveEggs);
+			flushAll();
 		}
 		
 		private function moveEggs(e:TimerEvent):void {

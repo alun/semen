@@ -24,6 +24,7 @@ package semen.mvc.c {
 			_timer.addEventListener(TimerEvent.TIMER, changeHarePresent);
 			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, pauseAll);
 			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.UNPAUSE, unpauseAll);
+			flushAll();
 		}
 		
 		private function pauseAll(e:Event):void {

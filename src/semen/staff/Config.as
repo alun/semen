@@ -49,8 +49,8 @@ package semen.staff{
 			flushFailsScores = variables.flushLifesEvery ? variables.flushLifesEvery.split(';') : flushFailsScores;
 			maxFailsPerGame = int(variables.lifes)? int(variables.lifes) :maxFailsPerGame;
 			pointsToSpeedUp = int(variables.pointsToSpeedUp) ? int(variables.pointsToSpeedUp) : pointsToSpeedUp;
-			eggsVelocityMultiplier = Number(variables.velocityMultiplier) ? Number(variables.velocityMultiplier)/100 : eggsVelocityMultiplier ;
-			newEggsMultiplier= Number(variables.appearNewMultiplier) ? Number(variables.appearNewMultiplier) / 100 : newEggsMultiplier ;
+			eggsVelocityMultiplier = Number(variables.velocityMultiplier) ? Number(variables.velocityMultiplier) / 100 : eggsVelocityMultiplier ;
+			newEggsMultiplier = Number(variables.appearNewMultiplier) ? Number(variables.appearNewMultiplier) / 100 : newEggsMultiplier ;
 			placeHoldersAlpha = Number(variables.placeHoldersAlpha) ? Number(variables.placeHoldersAlpha) / 100 : placeHoldersAlpha;
 			halfLifeInterval= Number(variables.halfLifeInterval) ? Number(variables.halfLifeInterval) : halfLifeInterval;
 			trace(' === Config load done === ');
