@@ -22,11 +22,15 @@ package semen.mvc.c {
 		private var chicksArray:Array = [];
 		private var scoreController:ScoreController;
 		private var hareController:HareController;
+		private var _flashGameFieldTimer:Timer;
+		private var _controls:Controls;
 		
-		public function RootController(gameField:GameField) {
+		public function RootController(gameField:GameField, controls:Controls) {
 			_gameField = gameField;
+			_controls = controls;
 			initControllers();
 			initNewEggsTimer();
+			initInPauseTimer();
 		}
 		
 		/******************************************************************************************************/
@@ -69,11 +73,11 @@ package semen.mvc.c {
 		private function initButtonController():void {
 			var buttons:Object = { };
 			for each(var prefix:String in sides) {
-				var button:MovieClip = MovieClip(_gameField[prefix + "Button"]);
+				var button:MovieClip = MovieClip(_controls[prefix + "Button"]);
 				buttons[prefix] = button;
 			}
-			buttons['pp'] = MovieClip(_gameField["ppButton"]);
-			buttons['ng'] = MovieClip(_gameField["ngButton"]);
+			buttons['pp'] = MovieClip(_controls["ppButton"]);
+			buttons['ng'] = MovieClip(_controls["ngButton"]);
 			buttonsController = new ButtonsController(buttons, wolfController);
 			buttonsController.addEventListener(ButtonEvent.NEW_GAME, newGameListener);
 		}
@@ -98,6 +102,15 @@ package semen.mvc.c {
 			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, pauseTimer);
 			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.UNPAUSE, unPauseTimer);
 		}
+		/******************************************************************************************************/
+		
+		/**
+		 * Timer, that flashing gameField at pauseTime
+		 */
+		private function initInPauseTimer():void {
+			_flashGameFieldTimer = new Timer(Config.pausedScreenFlashingInterval);
+			_flashGameFieldTimer.addEventListener(TimerEvent.TIMER, flashGameField);
+		}
 		
 		/******************************************************************************************************/
 		
@@ -107,10 +120,18 @@ package semen.mvc.c {
 		
 		private function unPauseTimer(e:Event):void {
 			_newEggsTimer.start();
+			_flashGameFieldTimer.stop();
+			_flashGameFieldTimer.reset();
+			_gameField.visible = true;
 		}
 		
 		private function pauseTimer(e:Event):void {
 			_newEggsTimer.stop();
+			_flashGameFieldTimer.start();
+		}
+		
+		private function flashGameField(e:TimerEvent):void {
+			_gameField.visible = !_gameField.visible;
 		}
 		
 		/******************************************************************************************************/

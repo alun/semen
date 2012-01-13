@@ -19,6 +19,7 @@ package semen.staff{
 		static public var newEggsMultiplier:Number = .5;
 		static public var placeHoldersAlpha:Number = .1;
 		static public var halfLifeInterval:Number = 500;
+		static public var pausedScreenFlashingInterval:Number = 1000;
 		static private var loadCallback:Function = null;
 		
 		
@@ -52,7 +53,8 @@ package semen.staff{
 			eggsVelocityMultiplier = Number(variables.velocityMultiplier) ? Number(variables.velocityMultiplier) / 100 : eggsVelocityMultiplier ;
 			newEggsMultiplier = Number(variables.appearNewMultiplier) ? Number(variables.appearNewMultiplier) / 100 : newEggsMultiplier ;
 			placeHoldersAlpha = Number(variables.placeHoldersAlpha) ? Number(variables.placeHoldersAlpha) / 100 : placeHoldersAlpha;
-			halfLifeInterval= Number(variables.halfLifeInterval) ? Number(variables.halfLifeInterval) : halfLifeInterval;
+			halfLifeInterval = Number(variables.halfLifeInterval) ? Number(variables.halfLifeInterval) : halfLifeInterval;
+			pausedScreenFlashingInterval = Number(variables.pausedScreenFlashingInterval) ? Number(variables.pausedScreenFlashingInterval) : pausedScreenFlashingInterval;
 			trace(' === Config load done === ');
 			loadDone();
 		}
