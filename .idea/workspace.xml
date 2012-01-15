@@ -76,10 +76,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Config.as" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/semen/staff/Config.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="93" selection-start="2106" selection-end="2106" vertical-scroll-proportion="0.26343155">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="17" selection-start="194" selection-end="194" vertical-scroll-proportion="0.20623916">
+            <state line="7" column="17" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,7 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/semen/State.as" />
         <option value="$PROJECT_DIR$/src/semen/Config.as" />
         <option value="$PROJECT_DIR$/target/semen.conf" />
         <option value="$PROJECT_DIR$/src/semen/World.as" />
@@ -160,6 +168,7 @@
         <option value="$PROJECT_DIR$/bin/index.html" />
         <option value="$PROJECT_DIR$/src/semen/mvc/c/ChickController.as" />
         <option value="$PROJECT_DIR$/src/semen/mvc/c/RootController.as" />
+        <option value="$PROJECT_DIR$/src/semen/staff/Config.as" />
         <option value="$PROJECT_DIR$/bin/config.xml" />
       </list>
     </option>
@@ -568,13 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/semen/staff/Config.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="26" selection-start="239" selection-end="239" vertical-scroll-proportion="-0.677643">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/semen/mvc/m/ChickModel.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="0" selection-start="987" selection-end="987" vertical-scroll-proportion="0.0">
@@ -612,7 +614,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="194" selection-end="194" vertical-scroll-proportion="0.20623916">
+        <state line="7" column="17" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/semen/staff/Config.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="93" selection-start="2106" selection-end="2106" vertical-scroll-proportion="0.26343155">
           <folding />
         </state>
       </provider>

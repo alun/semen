@@ -44,10 +44,10 @@ package semen.staff{
 			}
 			var  variables:XML = loadedXML.config[0];
 			eggsVelocity = Number(variables.velocity) ? Number(variables.velocity) : eggsVelocity;
-			newEggsFrequency = Number(variables.appearNew) ? Number(variables.velocity) : newEggsFrequency;
+			newEggsFrequency = Number(variables.appearNew) ? Number(variables.appearNew) : newEggsFrequency;
 			maximumTriesToAddEgg = Number(variables.maximumTries) ? Number(variables.maximumTries) : maximumTriesToAddEgg;
 			hareAppearingInterval = Number(variables.wifeAppearInterval) ? Number(variables.wifeAppearInterval) : hareAppearingInterval;
-			flushFailsScores = variables.flushLifesEvery ? variables.flushLifesEvery.split(';') : flushFailsScores;
+			flushFailsScores = variables.flushLifesEvery ? variables.flushLifesEvery.split(',') : flushFailsScores;
 			maxFailsPerGame = int(variables.lifes)? int(variables.lifes) :maxFailsPerGame;
 			pointsToSpeedUp = int(variables.pointsToSpeedUp) ? int(variables.pointsToSpeedUp) : pointsToSpeedUp;
 			eggsVelocityMultiplier = Number(variables.velocityMultiplier) ? Number(variables.velocityMultiplier) / 100 : eggsVelocityMultiplier ;

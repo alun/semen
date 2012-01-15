@@ -5,13 +5,13 @@
   <velocity>1000</velocity>
 
   <!-- Интервал появления новой семечки, мс -->
-  <appearNew>5000</appearNew>
+  <appearNew>2000</appearNew>
 
   <!-- Интервал появления жены, мс -->
   <wifeAppearInterval>5000</wifeAppearInterval>
 
   <!-- Чему должны быть равны очки, чтобы обновились жизни, очки -->
-  <flushLifesEvery>10;20;30;200</flushLifesEvery>
+  <flushLifesEvery>10,20,30,200</flushLifesEvery>
 
   <!-- Количество жизней, штуки -->
   <lifes>4</lifes>
