@@ -33,20 +33,22 @@ package semen.mvc.c {
 		private function moveEggs(e:TimerEvent):void {
 			var places:Array = _model.places;
 			var fall:Array = _model.fall;
+            var eggFall:Boolean = false;
 			for (var i:int = fall.length - 1; i > 0; i--) {
 				fall[i] = fall[i - 1];
 			} 
 			fall[0] = false;
-			if (places[places.length - 1]) {
-				dispatchEvent(new EggEvent(EggEvent.EGG_FALL));
-			}
+            eggFall = places[places.length - 1];
 			for (i = places.length - 1; i > 0; i--) {
 				places[i] = places[i - 1];
 			} 
 			places[0] = false;
 			_model.fall = fall;
 			_model.places = places;
-		}
+            if (eggFall) {
+                dispatchEvent(new EggEvent(EggEvent.EGG_FALL));
+            }
+        }
 		
 		public function fall():void {
 			var fall:Array = _model.fall; 

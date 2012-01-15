@@ -140,14 +140,17 @@ package semen.mvc.c {
 		 * Last preparations and start-game block
 		 * */
 		
-		private function flushAll():void {
+		private function flushAll(fullClean:Boolean = true):void {
 			for each (var cc:ChickController in chickControllers ) {
 				cc.flushAll();
 			} 
 			buttonsController.flushAll();
-			wolfController.flushAll();
-			scoreController.flushAll();
 			hareController.flushAll();
+
+            if (fullClean) {
+                scoreController.flushAll();
+                wolfController.flushAll();
+            }
 			
 			buttonsController.removeEventListener(ButtonEvent.PAUSE, changePauseMode);
 			_newEggsTimer.stop();
@@ -228,8 +231,8 @@ package semen.mvc.c {
 		  */
 		  
 		private function gameOver(e:GameEvent):void {
+            flushAll(false);
 			checkResults();
-			flushAll();
 		}
 		
 		private function stopAll():void {

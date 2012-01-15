@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<data>
- <config>
-	<velocity>1000</velocity> <!-- Скорость перемещения семечек, мс --> 
-	<appearNew>1500</appearNew> <!-- Интервал появления новой семечки, мс --> 
-	<wifeAppearInterval>5000</wifeAppearInterval> <!-- Интервал появления жены, мс --> 
-	<flushLifesEvery>2;10;20;30;200</flushLifesEvery> <!-- Чему должны быть кратны очки, чтобы обновились жизни, очки --> 
-	<lifes>4</lifes> <!-- Количество жизней, штуки --> 
-	<pointsToSpeedUp>10</pointsToSpeedUp> <!-- Чему должны быть кратны очки, чтобы игра ускорилась, очки --> 
-	<velocityMultiplier>10</velocityMultiplier> <!-- Насколько увеличивается скорость семечек, проценты --> 
-	<appearNewMultiplier>10</appearNewMultiplier> <!-- Насколько уменьшается интервал появления новых семечек, проценты --> 
-	<placeHoldersAlpha>10</placeHoldersAlpha> <!-- Уровень прозрачности места под семечки, проценты --> 
-	<halfLifeInterval>500</halfLifeInterval> <!-- Скорость мигания половины потраченной жизни, мс --> 
- </config>
-</data>
+<data><config>
+
+  <!-- Скорость перемещения семечек, мс -->
+  <velocity>1000</velocity>
+
+  <!-- Интервал появления новой семечки, мс -->
+  <appearNew>5000</appearNew>
+
+  <!-- Интервал появления жены, мс -->
+  <wifeAppearInterval>5000</wifeAppearInterval>
+
+  <!-- Чему должны быть равны очки, чтобы обновились жизни, очки -->
+  <flushLifesEvery>10;20;30;200</flushLifesEvery>
+
+  <!-- Количество жизней, штуки -->
+  <lifes>4</lifes>
+
+  <!-- Чему должны быть кратны очки, чтобы игра ускорилась, очки -->
+  <pointsToSpeedUp>10</pointsToSpeedUp>
+
+  <!-- Насколько увеличивается скорость семечек, проценты -->
+  <velocityMultiplier>5</velocityMultiplier>
+
+  <!-- Насколько уменьшается интервал появления новых семечек, проценты -->
+  <appearNewMultiplier>5</appearNewMultiplier>
+
+  <!-- Уровень прозрачности мест под семечки, проценты -->
+  <placeHoldersAlpha>10</placeHoldersAlpha>
+
+  <!-- Скорость мигания половины потраченной жизни, мс -->
+  <halfLifeInterval>500</halfLifeInterval>
+
+ </config></data>
