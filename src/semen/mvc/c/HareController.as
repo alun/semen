@@ -1,7 +1,7 @@
 package semen.mvc.c {
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import semen.staff.Config;
-	import flash.display.DisplayObject;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import semen.mvc.m.HareModel;
@@ -17,14 +17,27 @@ package semen.mvc.c {
 		private var _view:HareView;
 		private var _timer:Timer;
 		
-		public function HareController(movie:DisplayObject) {
+		public function HareController(movie:MovieClip) {
 			_model = new HareModel();
 			_view = new HareView(movie, _model);
-			_timer = new Timer(Config.hareAppearingInterval);
+			var _frameTimer:Timer = new Timer(500);
+			_frameTimer.addEventListener(TimerEvent.TIMER, changeHareState);
+			_frameTimer.start();
+			_timer = new Timer(Config.hareAppearingInterval,2);
 			_timer.addEventListener(TimerEvent.TIMER, changeHarePresent);
+			_timer.addEventListener(TimerEvent.TIMER_COMPLETE, resetTimer);
 			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, pauseAll);
 			GlobalDispatcher.instance.addEventListener(GlobalDispatcher.UNPAUSE, unpauseAll);
 			flushAll();
+		}
+		
+		private function changeHareState(e:TimerEvent):void {
+			_view.changeHareState();
+		}
+		
+		private function resetTimer(e:TimerEvent):void {
+			_timer.stop();
+			_timer.reset();
 		}
 		
 		private function pauseAll(e:Event):void {
@@ -48,7 +61,9 @@ package semen.mvc.c {
 		}
 		
 		public function start():void {
-			_timer.start();
+			if (!_timer.running) {
+				_timer.start();
+			}
 		}
 		
 		public function flushAll():void {

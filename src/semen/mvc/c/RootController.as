@@ -168,7 +168,7 @@ package semen.mvc.c {
 				GlobalDispatcher.instance.changePauseMode();
 			}
 			buttonsController.addEventListener(ButtonEvent.PAUSE, changePauseMode);
-			hareController.start();
+			//hareController.start();
 			_newEggsTimer.start();
 		}
 		
@@ -194,6 +194,7 @@ package semen.mvc.c {
 		
 		private function losePoint():void {
 			scoreController.removeLife(hareController.harePresent);
+			hareController.start();
 		}
 		
 		/******************************************************************************************************/

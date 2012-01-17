@@ -1,5 +1,5 @@
 package semen.mvc.v {
-	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	import semen.mvc.m.HareModel;
 	import semen.staff.RenderEvent;
 	
@@ -8,11 +8,15 @@ package semen.mvc.v {
 	 * @author Mickodin Ilja mka BuKT
 	 */
 	public class HareView {
-		private var _movie:DisplayObject;
+		private var _movie:MovieClip;
 		
-		public function HareView(movie:DisplayObject, model:HareModel) {
+		public function HareView(movie:MovieClip, model:HareModel) {
 			_movie = movie
 			model.addEventListener(RenderEvent.MODEL_CHANGED, renderView);
+		}
+		
+		public function changeHareState():void {
+			_movie.play();
 		}
 		
 		private function renderView(e:RenderEvent):void {
