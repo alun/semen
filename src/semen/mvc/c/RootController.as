@@ -57,6 +57,7 @@ package semen.mvc.c {
 					chickControllers[prefix].addEventListener(EggEvent.EGG_FALL, checkPoint);
 				}
 			}
+			ChickController.timer.addEventListener(TimerEvent.TIMER, playTurnSound);
 		}
 		
 		private function initWolfController():void {
@@ -146,12 +147,10 @@ package semen.mvc.c {
 			} 
 			buttonsController.flushAll();
 			hareController.flushAll();
-
             if (fullClean) {
                 scoreController.flushAll();
                 wolfController.flushAll();
             }
-			
 			buttonsController.removeEventListener(ButtonEvent.PAUSE, changePauseMode);
 			_newEggsTimer.stop();
 			_newEggsTimer.reset();
@@ -190,11 +189,13 @@ package semen.mvc.c {
 		
 		private function winPoint():void {
 			scoreController.addPoint();
+			playSound('catch');
 		}
 		
 		private function losePoint():void {
-			scoreController.removeLife(hareController.harePresent);
 			hareController.start();
+			scoreController.removeLife(hareController.harePresent);
+			playSound('miss');
 		}
 		
 		/******************************************************************************************************/
@@ -237,13 +238,6 @@ package semen.mvc.c {
 		}
 		
 		private function stopAll():void {
-			//for each (var cc:ChickController in chickControllers ) {
-				//cc.stopAll();
-			//} 
-			//buttonsController.stopAll();
-			//wolfController.stopAll();
-			//scoreController.stopAll();
-			//hareController.stopAll();
 			_newEggsTimer.stop();
 			_newEggsTimer.reset();
 			_newEggsTimer.delay = Config.newEggsFrequency;
@@ -269,6 +263,18 @@ package semen.mvc.c {
 			GlobalDispatcher.instance.changePauseMode();
 		}
 		
+		/******************************************************************************************************/
+		/**
+		 * Sounds block
+		 */
+			
+		private function playSound(type:String):void {
+			SoundController.playSound(type);
+		}
+		
+		private function playTurnSound(e:TimerEvent):void {
+			playSound('step');
+		}
 		
 		/******************************************************************************************************/
 	}

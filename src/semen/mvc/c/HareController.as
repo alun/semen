@@ -16,11 +16,12 @@ package semen.mvc.c {
 		private var _model:HareModel;
 		private var _view:HareView;
 		private var _timer:Timer;
+		private var _frameTimer:Timer;
 		
 		public function HareController(movie:MovieClip) {
 			_model = new HareModel();
 			_view = new HareView(movie, _model);
-			var _frameTimer:Timer = new Timer(500);
+			_frameTimer = new Timer(500);
 			_frameTimer.addEventListener(TimerEvent.TIMER, changeHareState);
 			_frameTimer.start();
 			_timer = new Timer(Config.hareAppearingInterval,2);
@@ -68,10 +69,8 @@ package semen.mvc.c {
 		
 		public function flushAll():void {
 			_model.flushAll();
-			_timer.stop();
-			_timer.reset();
-		}
-		
+			resetTimer(null);
+		}		
 	}
 
 }

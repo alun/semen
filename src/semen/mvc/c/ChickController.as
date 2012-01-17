@@ -98,5 +98,12 @@ package semen.mvc.c {
 			_timer.reset();
 			_timer.delay = Config.eggsVelocity;
 		}
+		
+		static public function get timer():EventDispatcher {
+			if (!_timer) {
+				_timer = new Timer(Config.eggsVelocity, 0);
+			}
+			return _timer;
+		}
 	}
 }
