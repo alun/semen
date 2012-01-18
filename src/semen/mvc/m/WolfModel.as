@@ -10,7 +10,9 @@ package semen.mvc.m{
 			'ul': false, 
 			'dl': false, 
 			'ur': false, 
-			'dr': true
+			'dr': false,
+			'down': false,
+			'steady': true
 		}
 		private var _current:String = 'dr';
 		public function WolfModel() {
@@ -25,15 +27,28 @@ package semen.mvc.m{
 			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
-		public function flushAll():void {
+		public function flushAll(isLose:Boolean = false):void {
 			_positions= {
 				'ul': false, 
 				'dl': false, 
 				'ur': false, 
-				'dr': true
+				'dr': false,
+				'steady': !isLose,
+				'down': isLose
+			}
+			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
+		}
+		
+		public function getReady():void {
+				_positions= {
+				'ul': false, 
+				'dl': false, 
+				'ur': false, 
+				'dr': true,
+				'steady': false,
+				'down': false
 			}
 			_current = 'dr';
-			dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
 		public function get positions():Object {

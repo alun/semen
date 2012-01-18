@@ -17,11 +17,12 @@ package semen.mvc.c {
 		}
 		
 		public function getReady():void {
+			_model.getReady();
 			_model.dispatchEvent(new RenderEvent(RenderEvent.MODEL_CHANGED));
 		}
 		
-		public function flushAll():void {
-			_model.flushAll();
+		public function flushAll(isLose:Boolean = false):void {
+			_model.flushAll(isLose);
 		}
 		
 		public function set position(value:String):void {

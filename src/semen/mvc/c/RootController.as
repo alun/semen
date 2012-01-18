@@ -68,6 +68,8 @@ package semen.mvc.c {
 					views[prefix] = wolfView;
 				}
 			}
+			views['steady'] = MovieClip(_gameField['steady' + "Wolf"]);
+			views['down'] = MovieClip(_gameField['down' + "Wolf"]);
 			wolfController = new WolfController(views);
 		}
 		
@@ -147,9 +149,9 @@ package semen.mvc.c {
 			} 
 			buttonsController.flushAll();
 			hareController.flushAll();
+            wolfController.flushAll(true);
             if (fullClean) {
                 scoreController.flushAll();
-                wolfController.flushAll();
             }
 			buttonsController.removeEventListener(ButtonEvent.PAUSE, changePauseMode);
 			_newEggsTimer.stop();
@@ -162,6 +164,7 @@ package semen.mvc.c {
 				cc.getReady();
 				cc.start();
 			} 
+			wolfController.getReady();
 			// Start itself
 			if (GlobalDispatcher.instance.isPaused) {
 				GlobalDispatcher.instance.changePauseMode();
