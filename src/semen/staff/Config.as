@@ -20,6 +20,7 @@ package semen.staff{
 		static public var placeHoldersAlpha:Number = .1;
 		static public var halfLifeInterval:Number = 500;
 		static public var pausedScreenFlashingInterval:Number = 1000;
+		static public var soundVolume:Number = .8;
 		static private var loadCallback:Function = null;
 		
 		
@@ -55,6 +56,7 @@ package semen.staff{
 			placeHoldersAlpha = Number(variables.placeHoldersAlpha) ? Number(variables.placeHoldersAlpha) / 100 : placeHoldersAlpha;
 			halfLifeInterval = Number(variables.halfLifeInterval) ? Number(variables.halfLifeInterval) : halfLifeInterval;
 			pausedScreenFlashingInterval = Number(variables.pausedScreenFlashingInterval) ? Number(variables.pausedScreenFlashingInterval) : pausedScreenFlashingInterval;
+			soundVolume = Number(variables.soundVolume) ? Number(variables.soundVolume) / 100 : soundVolume;
 			trace(' === Config load done === ');
 			loadDone();
 		}
