@@ -11,7 +11,7 @@
   <wifeAppearInterval>5000</wifeAppearInterval>
 
   <!-- Чему должны быть равны очки, чтобы обновились жизни, очки -->
-  <flushLifesEvery>10,20,30,200</flushLifesEvery>
+  <flushLifesEvery>100,200,300</flushLifesEvery>
 
   <!-- Количество жизней, штуки -->
   <lifes>4</lifes>
