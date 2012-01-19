@@ -237,6 +237,7 @@ package semen.mvc.c {
 		  
 		private function gameOver(e:GameEvent):void {
             flushAll(false);
+			buttonsController.gameOver();
 			checkResults();
 		}
 		
