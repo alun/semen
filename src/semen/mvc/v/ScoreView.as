@@ -25,6 +25,10 @@ package semen.mvc.v {
 			model.addEventListener(RenderEvent.MODEL_CHANGED, renderView);
 			_halfLifeTimer.addEventListener(TimerEvent.TIMER, processHalfLife);
 			_halfLifeTimer.start();
+			for (var i:int = 0; i < 4; i++) {
+				var place:TextField = _scores['score_' + i];
+				place.selectable = false;
+			}
 		}
 		
 		private function renderView(e:RenderEvent):void {
