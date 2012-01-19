@@ -2,7 +2,9 @@ package semen.mvc.c {
 	import flash.events.Event;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
+	import flash.media.SoundLoaderContext;
 	import flash.media.SoundTransform;
+	import flash.net.URLRequest;
 	import semen.staff.Config;
 	/**
 	 * ...
@@ -15,10 +17,17 @@ package semen.mvc.c {
 		private static var _priorities:Array = ['step', 'catch', 'miss'];
 		private static var _current:String = '';
 		private static var _soundTransform:SoundTransform = new SoundTransform(Config.soundVolume );
+		static private var _musicChannel:SoundChannel = null;
+		static private var _music:Sound;
 		private static var _soundsLibrary:Object = { 
 			'step': Class(StepSound), 
 			'miss': Class(MissSound),
 			'catch':Class(CatchSound)
+		}
+		
+		static public function initMusic():void {
+			_music = new Sound(new URLRequest(Config.backgroundMusicLink), new SoundLoaderContext(500));
+			_musicChannel = _music.play(0, Number.POSITIVE_INFINITY, _soundTransform);
 		}
 		
 		static public function get isSoundOn():Boolean {
@@ -50,6 +59,18 @@ package semen.mvc.c {
 				soundChannel.stop();
 				_soundsChannels.splice(_soundsChannels.indexOf(soundChannel), 1);
 				_current = '';
+			}
+		}
+		
+		static private function switchMute():void {
+			_isSoundOn = !_isSoundOn;
+			if (!_isSoundOn) {
+				if (!_music) {
+					initMusic();
+				}
+				_musicChannel.stop();
+			} else {
+				_musicChannel = _music.play(_musicChannel.position, Number.POSITIVE_INFINITY, _soundTransform);
 			}
 		}
 	}
