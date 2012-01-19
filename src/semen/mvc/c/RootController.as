@@ -160,6 +160,7 @@ package semen.mvc.c {
 		}
 		
 		private function startGame():void {
+            SoundController.initMusic();
 			for each (var cc:ChickController in chickControllers ) {
 				cc.getReady();
 				cc.start();

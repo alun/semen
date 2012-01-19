@@ -34,10 +34,13 @@
   <!-- Скорость переключения [не]видимости экрана в момент паузы, мс -->
   <pausedScreenFlashingInterval>1000</pausedScreenFlashingInterval>
 
-  <!-- Громкость звуков, проценты-->
-  <soundVolume>0</soundVolume>
-  
-   <!-- Ссылка на фоновую музыку, URL-encoded-->
-  <backgroundMusicLink>http://some.sound/url</backgroundMusicLink>
+  <!-- Громкость звуков, % -->
+  <soundVolume>100</soundVolume>
+
+  <!-- Громкость фоновой музыки, % -->
+  <musicVolume>10</musicVolume>
+
+  <!-- Адрес файла с фонофой музыкой, URL -->
+  <backgroundMusicLink>music.mp3</backgroundMusicLink>
 
  </config></data>

@@ -1,12 +1,14 @@
 package semen.mvc.c {
-	import flash.events.Event;
+    import flash.events.Event;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.media.SoundLoaderContext;
 	import flash.media.SoundTransform;
 	import flash.net.URLRequest;
 	import semen.staff.Config;
-	/**
+    import semen.staff.GlobalDispatcher;
+
+    /**
 	 * ...
 	 * @author Mickodin Ilja mka BuKT
 	 */
@@ -16,10 +18,19 @@ package semen.mvc.c {
 		private static var _soundsChannels:Array = new Array();
 		private static var _priorities:Array = ['step', 'catch', 'miss'];
 		private static var _current:String = '';
-		private static var _soundTransform:SoundTransform = new SoundTransform(Config.soundVolume );
-		static private var _musicChannel:SoundChannel = null;
-		static private var _music:Sound;
-		private static var _soundsLibrary:Object = { 
+		private static var _soundTransform:SoundTransform = new SoundTransform(Config.soundVolume);
+        private static var _musicTransform:SoundTransform = new SoundTransform(Config.musicVolume);
+        private static var _musicPlayheadPosition:Number = 0;
+        private static var _musicChannel:SoundChannel;
+        private static var _music:Sound;
+
+        // static initializers
+        {
+            GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, stopMusic);
+            GlobalDispatcher.instance.addEventListener(GlobalDispatcher.UNPAUSE, playMusic);
+        }
+
+		private static var _soundsLibrary:Object = {
 			'step': Class(StepSound), 
 			'miss': Class(MissSound),
 			'catch':Class(CatchSound)
@@ -27,8 +38,8 @@ package semen.mvc.c {
 		
 		static public function initMusic():void {
 			_music = new Sound(new URLRequest(Config.backgroundMusicLink), new SoundLoaderContext(500));
-			_musicChannel = _music.play(0, Number.POSITIVE_INFINITY, _soundTransform);
-		}
+            playMusic();
+        }
 		
 		static public function get isSoundOn():Boolean {
 			return _isSoundOn;
@@ -42,6 +53,18 @@ package semen.mvc.c {
 				processChannel(soundChannel);
 			}		
 		}
+
+        static private function stopMusic(e:Event = null):void {
+            _musicPlayheadPosition = _musicChannel.position;
+            _musicChannel.stop();
+        }
+
+        static private function playMusic(e:Event = null):void {
+            if (_musicChannel) {
+                _musicChannel.stop();
+            }
+            _musicChannel = _music.play(_musicPlayheadPosition, 0, _musicTransform);
+        }
 		
 		static private function isPriority(type:String):Boolean {
 			return (_priorities.indexOf(type) > _priorities.indexOf(_current));

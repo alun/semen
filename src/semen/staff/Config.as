@@ -21,6 +21,7 @@ package semen.staff{
 		static public var halfLifeInterval:Number = 500;
 		static public var pausedScreenFlashingInterval:Number = 1000;
 		static public var soundVolume:Number = .8;
+        static public var musicVolume:Number = .3;
 		static public var backgroundMusicLink:String = 'http://some.sound/url';
 		static private var loadCallback:Function = null;
 		
@@ -58,6 +59,7 @@ package semen.staff{
 			halfLifeInterval = Number(variables.halfLifeInterval) ? Number(variables.halfLifeInterval) : halfLifeInterval;
 			pausedScreenFlashingInterval = Number(variables.pausedScreenFlashingInterval) ? Number(variables.pausedScreenFlashingInterval) : pausedScreenFlashingInterval;
 			soundVolume = !isNaN(Number(variables.soundVolume)) ? Number(variables.soundVolume) / 100 : soundVolume;
+            musicVolume = !isNaN(Number(variables.musicVolume)) ? Number(variables.musicVolume) / 100 : musicVolume;
 			backgroundMusicLink = variables.backgroundMusicLink ? variables.backgroundMusicLink : backgroundMusicLink;
 			trace(' === Config load done === ');
 			loadDone();

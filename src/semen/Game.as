@@ -1,12 +1,8 @@
 package semen{
-	import semen.staff.Config;
+    import semen.staff.Config;
 	import semen.mvc.c.RootController;
-	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.geom.Point;
-	import flash.ui.Keyboard;
-	
+
 	/**
 	 * ...
 	 * @author Mickodin Ilja mka BuKT
