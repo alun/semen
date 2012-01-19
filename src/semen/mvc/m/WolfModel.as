@@ -44,11 +44,11 @@ package semen.mvc.m{
 				'ul': false, 
 				'dl': false, 
 				'ur': false, 
-				'dr': true,
-				'steady': false,
+				'dr': false,
+				'steady': true,
 				'down': false
 			}
-			_current = 'dr';
+			_current = 'steady';
 		}
 		
 		public function get positions():Object {
