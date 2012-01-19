@@ -240,6 +240,7 @@ package semen.mvc.c {
             flushAll(false);
 			buttonsController.gameOver();
 			checkResults();
+            SoundController.stopMusic();
 		}
 		
 		private function stopAll():void {

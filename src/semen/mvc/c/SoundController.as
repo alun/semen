@@ -26,7 +26,7 @@ package semen.mvc.c {
 
         // static initializers
         {
-            GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, stopMusic);
+            GlobalDispatcher.instance.addEventListener(GlobalDispatcher.PAUSE, pauseMusic);
             GlobalDispatcher.instance.addEventListener(GlobalDispatcher.UNPAUSE, playMusic);
         }
 
@@ -55,7 +55,12 @@ package semen.mvc.c {
 			}		
 		}
 
-        static private function stopMusic(e:Event = null):void {
+        static public function stopMusic():void {
+            _musicChannel.stop();
+            _musicPlayheadPosition = 0;
+        }
+
+        static private function pauseMusic(e:Event = null):void {
             _musicPlayheadPosition = _musicChannel.position;
             _musicChannel.stop();
         }
