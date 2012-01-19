@@ -50,7 +50,7 @@ package semen.mvc.c {
 			if (_soundsLibrary[type] && _isSoundOn && isPriority(type)) {
 				_current = type;
 				var sound:Sound = Sound(new _soundsLibrary[type]());
-				var soundChannel:SoundChannel = sound.play(0,0, _soundTransform);
+				var soundChannel:SoundChannel = sound.play(0, 0, _soundTransform);
 				processChannel(soundChannel);
 			}		
 		}
@@ -64,7 +64,7 @@ package semen.mvc.c {
             if (_musicChannel) {
                 _musicChannel.stop();
             }
-            _musicChannel = _music.play(_musicPlayheadPosition, 0, _musicTransform);
+            _musicChannel = _music.play(_musicPlayheadPosition, int.MAX_VALUE, _musicTransform);
         }
 		
 		static private function isPriority(type:String):Boolean {
