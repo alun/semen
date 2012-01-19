@@ -38,6 +38,7 @@ package semen.mvc.c {
 		
 		static public function initMusic():void {
 			_music = new Sound(new URLRequest(Config.backgroundMusicLink), new SoundLoaderContext(500));
+            _musicPlayheadPosition = 0;
             playMusic();
         }
 		

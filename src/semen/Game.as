@@ -18,10 +18,10 @@ package semen{
             url = url.replace("http://", "");
             host = url.substring(0, url.indexOf("/"));
 
-            //if (ALLOWED_HOSTS.indexOf(host) != -1) {
+            if (ALLOWED_HOSTS.indexOf(host) != -1) {
                 if (stage) init();
                 else addEventListener(Event.ADDED_TO_STAGE, init);
-            //}
+            }
 		}
 		
 		private function init(e:Event = null):void {
