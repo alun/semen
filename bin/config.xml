@@ -30,5 +30,14 @@
 
   <!-- Скорость мигания половины потраченной жизни, мс -->
   <halfLifeInterval>500</halfLifeInterval>
+  
+  <!-- Скорость переключения [не]видимости экрана в момент паузы, мс -->
+  <pausedScreenFlashingInterval>1000</pausedScreenFlashingInterval>
+
+  <!-- Громкость звуков, проценты-->
+  <soundVolume>0</soundVolume>
+  
+   <!-- Ссылка на фоновую музыку, URL-encoded-->
+  <backgroundMusicLink>http://some.sound/url</backgroundMusicLink>
 
  </config></data>

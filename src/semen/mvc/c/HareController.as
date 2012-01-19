@@ -17,6 +17,7 @@ package semen.mvc.c {
 		private var _view:HareView;
 		private var _timer:Timer;
 		private var _frameTimer:Timer;
+		private var _wasPaused:Boolean = false;
 		
 		public function HareController(movie:MovieClip) {
 			_model = new HareModel();
@@ -39,14 +40,21 @@ package semen.mvc.c {
 		private function resetTimer(e:TimerEvent):void {
 			_timer.stop();
 			_timer.reset();
+			_wasPaused = false;
 		}
 		
 		private function pauseAll(e:Event):void {
-			_timer.stop();
+			if (_timer.running) {
+				_wasPaused = true;
+				_timer.stop();
+			}
 		}
 		
 		private function unpauseAll(e:Event):void {
-			_timer.start();
+			if (_wasPaused) {
+				_wasPaused = false;
+				_timer.start();
+			}
 		}
 		
 		private function changeHarePresent(e:TimerEvent):void {
@@ -69,6 +77,7 @@ package semen.mvc.c {
 		
 		public function flushAll():void {
 			_model.flushAll();
+
 			resetTimer(null);
 		}		
 	}

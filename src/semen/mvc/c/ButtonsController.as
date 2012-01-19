@@ -20,6 +20,7 @@ package semen.mvc.c {
 		private var _model:ButtonsModel;
 		private var _view:ButtonsView;
 		private var _controlledObject:WolfController;
+		private var _isGame:Boolean = false;
 		
 		public function ButtonsController(buttonsViews:Object, controlledObject:WolfController) {
 			_controlledObject = controlledObject;
@@ -44,16 +45,22 @@ package semen.mvc.c {
 		
 		private function buttonClickedListener(e:ButtonEvent):void {
 			if (e.side == 'ng') {
+				_isGame = true;
 				dispatchEvent(new ButtonEvent(ButtonEvent.NEW_GAME));
 				return;
 			} else if (e.side == 'pp') {
 				dispatchEvent(new ButtonEvent(ButtonEvent.PAUSE));
 				return;
-			}
-			if (!GlobalDispatcher.instance.isPaused) {
+			} else if (!GlobalDispatcher.instance.isPaused) {
 				_model.down(e.side);
-				_controlledObject.position = e.side;
+				if (_isGame) {
+					_controlledObject.position = e.side;
+				}
 			}
+		}
+		
+		public function gameOver():void {
+			_isGame = false;
 		}
 	}		
 }

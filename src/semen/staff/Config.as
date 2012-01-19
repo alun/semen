@@ -57,7 +57,7 @@ package semen.staff{
 			placeHoldersAlpha = Number(variables.placeHoldersAlpha) ? Number(variables.placeHoldersAlpha) / 100 : placeHoldersAlpha;
 			halfLifeInterval = Number(variables.halfLifeInterval) ? Number(variables.halfLifeInterval) : halfLifeInterval;
 			pausedScreenFlashingInterval = Number(variables.pausedScreenFlashingInterval) ? Number(variables.pausedScreenFlashingInterval) : pausedScreenFlashingInterval;
-			soundVolume = Number(variables.soundVolume) ? Number(variables.soundVolume) / 100 : soundVolume;
+			soundVolume = !isNaN(Number(variables.soundVolume)) ? Number(variables.soundVolume) / 100 : soundVolume;
 			backgroundMusicLink = variables.backgroundMusicLink ? variables.backgroundMusicLink : backgroundMusicLink;
 			trace(' === Config load done === ');
 			loadDone();
